@@ -10,8 +10,11 @@
       font-family: 'Roboto', sans-serif;
       text-align: center;
       padding: 40px;
-      background: url('G:/RamBoi.99/NASA CODES/planet/gal.jpg') no-repeat center center fixed;
+
+      /* ✅ FIXED BACKGROUND — now loads from GitHub repo */
+      background: url('gal.jpg') no-repeat center center fixed;
       background-size: cover;
+
       color: #e6f2ff;
       overflow-x: hidden;
     }
@@ -139,17 +142,21 @@
   <footer><p>- Made By Insane Yodha 🧾 -</p></footer>
 
   <script>
-    const basePath = "G:\\RamBoi.99\\NASA CODES\\planet\\";
+    /*  
+      🔥 FIXED — use relative image paths (GitHub-compatible)
+      These files exist in your repo:
+      mercury.png, venus.png, earth.png, mars.png, jupiter.png, saturn.png, uranus.png, neptune.png
+    */
 
     const planets = [
-      { name: "Mercury", img: basePath + "mercury.png" },
-      { name: "Venus",   img: basePath + "venus.png" },
-      { name: "Earth",   img: basePath + "earth.png" },
-      { name: "Mars",    img: basePath + "mars.png" },
-      { name: "Jupiter", img: basePath + "jupiter.png" },
-      { name: "Saturn",  img: basePath + "saturn.png" },
-      { name: "Uranus",  img: basePath + "uranus.png" },
-      { name: "Neptune", img: basePath + "neptune.png" }
+      { name: "Mercury", img: "mercury.png" },
+      { name: "Venus",   img: "venus.png" },
+      { name: "Earth",   img: "earth.png" },
+      { name: "Mars",    img: "mars.png" },
+      { name: "Jupiter", img: "jupiter.png" },
+      { name: "Saturn",  img: "saturn.png" },
+      { name: "Uranus",  img: "uranus.png" },
+      { name: "Neptune", img: "neptune.png" }
     ];
 
     const cardsContainer = document.getElementById('planet-cards');
@@ -159,10 +166,9 @@
     planets.forEach((planet, index) => {
       const card = document.createElement('div');
       card.className = 'card';
-      const safeSrc = planet.img.replace(/\\/g, '/');
 
       card.innerHTML = `
-        <img src="${safeSrc}" alt="${planet.name}" />
+        <img src="${planet.img}" alt="${planet.name}" />
         <h2>${planet.name}</h2>
       `;
 
