@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jupiter - Planet Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('plaa.jpg'); /* Make sure plaa.jpg is in the same folder */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%; /* Makes it a perfect circle */
+      object-fit: cover;  /* Crops image to fill circle without distortion */
+      box-shadow: 0 0 25px rgba(255, 165, 0, 0.6); /* Orange glow for Jupiter */
+      margin-bottom: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 165, 0, 0.9);
+    }
+
+    h1 {
+      color: #f39c12;
+      font-size: 40px;
+      text-shadow: 0 0 15px #ffcc66;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    a:hover {
+      background: #217dbb;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Jupiter</h1>
+  <img src="jupiter.png" alt="Jupiter"> 
+  <p>
+    Jupiter is the largest planet in the Solar System and is mostly made of gas. 
+    It has a famous "Great Red Spot," a giant storm that has lasted for centuries. 
+    Jupiter has at least 95 moons, including the four large Galilean moons.
+  </p>
+  <a href="index.html">⬅ Back to Planet Selector</a>
+</body>
+</html>

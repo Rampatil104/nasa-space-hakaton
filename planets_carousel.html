@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🌌 Select a Planet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: url('C:/Users/Admin/Desktop/inda.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #2c3e50;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    /* Container for cards + arrows */
+    .scroll-wrapper {
+      position: relative;
+      max-width: 100vw;
+      margin: 0 auto 60px auto;
+    }
+
+    /* Horizontal scroll container */
+    .cards {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none; /* hide scrollbar */
+      -ms-overflow-style: none;  /* IE and Edge */
+      scroll-behavior: smooth;
+    }
+    .cards::-webkit-scrollbar {
+      display: none; /* hide scrollbar for Chrome, Safari */
+    }
+
+    /* Individual card */
+    .card {
+      flex: 0 0 auto;
+      cursor: pointer;
+      width: 174px; /* increased from 160px by ~9% */
+      background: rgba(255,255,255,0.85);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      padding: 15px;
+      transition: transform 0.3s;
+      user-select: none;
+    }
+    .card:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    .card img {
+      width: 100%;
+      height: 153px; /* increased proportionally from 140px */
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #3498db;
+    }
+
+    /* Info box */
+    .planet-info {
+      max-width: 700px;
+      background: rgba(255,255,255,0.9);
+      margin: 0 auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: left;
+      color: #2c3e50;
+    }
+    .planet-info img {
+      float: right;
+      width: 250px;
+      border-radius: 15px;
+      margin-left: 20px;
+      object-fit: contain;
+    }
+    .planet-info h2 {
+      margin-top: 0;
+      color: #3498db;
+    }
+    .planet-info p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .clear {
+      clear: both;
+    }
+
+    /* Arrow buttons */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      color: #3498db;
+      font-size: 30px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+      z-index: 20;
+    }
+    .arrow:hover {
+      background: #3498db;
+      color: white;
+    }
+    .arrow-left {
+      left: 5px;
+    }
+    .arrow-right {
+      right: 5px;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌌 Smart Planet Selector</h1>
+  <p class="subtitle">Click on a planet to see detailed information below</p>
+
+  <div class="scroll-wrapper">
+    <div class="arrow arrow-left" id="scroll-left">&#8249;</div>
+    <div class="cards" id="planet-cards">
+      <!-- Cards inserted here by JS -->
+    </div>
+    <div class="arrow arrow-right" id="scroll-right">&#8250;</div>
+  </div>
+
+  <div class="planet-info" id="planet-info" style="display:none;">
+    <!-- Planet info will appear here -->
+  </div>
+
+  <footer>
+    <p>- Made By Insane Yodha 🧾 -</p>
+  </footer>
+
+  <script>
+    const planets = [
+      {
+        name: "Mercury",
+        img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg",
+        description: "Mercury is the smallest planet in our solar system and closest to the Sun. It’s a rocky planet with a cratered surface, similar to the Moon.",
+        facts: [
+          "Diameter: 4,879 km",
+          "Orbital period: 88 days",
+          "Surface temperature: -173 to 427°C"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/mercury/overview/"
+      },
+      {
+        name: "Venus",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg",
+        description: "Venus is the second planet from the Sun and has a thick, toxic atmosphere. It’s the hottest planet due to a runaway greenhouse effect.",
+        facts: [
+          "Diameter: 12,104 km",
+          "Orbital period: 225 days",
+          "Surface temperature: around 465°C"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/venus/overview/"
+      },
+      {
+        name: "Earth",
+        img: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg",
+        description: "Earth is our home planet, the third from the Sun. It’s the only planet known to support life, with liquid water and a breathable atmosphere.",
+        facts: [
+          "Diameter: 12,742 km",
+          "Orbital period: 365 days",
+          "Surface temperature: -88 to 58°C"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/earth/overview/"
+      },
+      {
+        name: "Mars",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg",
+        description: "Mars is the red planet, known for its iron oxide surface giving it a reddish color. Scientists are exploring it for signs of past or present life.",
+        facts: [
+          "Diameter: 6,779 km",
+          "Orbital period: 687 days",
+          "Surface temperature: -125 to 20°C"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/mars/overview/"
+      },
+      {
+        name: "Jupiter",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg",
+        description: "Jupiter is the largest planet in our solar system. It’s a gas giant with a massive magnetic field and dozens of moons.",
+        facts: [
+          "Diameter: 139,820 km",
+          "Orbital period: 12 years",
+          "Famous for its Great Red Spot storm"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/jupiter/overview/"
+      },
+      {
+        name: "Saturn",
+        img: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg",
+        description: "Saturn is famous for its stunning ring system. It’s the second-largest gas giant and has more than 80 moons.",
+        facts: [
+          "Diameter: 116,460 km",
+          "Orbital period: 29 years",
+          "Rings made mostly of ice particles"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/saturn/overview/"
+      },
+      {
+        name: "Uranus",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg",
+        description: "Uranus is an ice giant with a blue-green color due to methane in its atmosphere. It rotates on its side, making it unique.",
+        facts: [
+          "Diameter: 50,724 km",
+          "Orbital period: 84 years",
+          "Known for its extreme axial tilt"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/uranus/overview/"
+      },
+      {
+        name: "Neptune",
+        img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg",
+        description: "Neptune is the farthest known planet in the solar system. It’s a cold, blue ice giant with strong winds and storms.",
+        facts: [
+          "Diameter: 49,244 km",
+          "Orbital period: 165 years",
+          "Has a giant storm called the Great Dark Spot"
+        ],
+        nasaLink: "https://solarsystem.nasa.gov/planets/neptune/overview/"
+      }
+    ];
+
+    const cardsContainer = document.getElementById('planet-cards');
+    const infoContainer = document.getElementById('planet-info');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+
+    // Create cards dynamically
+    planets.forEach((planet, index) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${planet.img}" alt="${planet.name}" />
+        <h2>${planet.name}</h2>
+      `;
+      card.addEventListener('click', () => showInfo(index));
+      cardsContainer.appendChild(card);
+    });
+
+    function showInfo(index) {
+      const p = planets[index];
+      infoContainer.style.display = 'block';
+      infoContainer.innerHTML = `
+        <h2>${p.name}</h2>
+        <img src="${p.img}" alt="${p.name}" />
+        <p>${p.description}</p>
+        <ul>
+          ${p.facts.map(fact => `<li>${fact}</li>`).join('')}
+        </ul>
+        <p>For more info, visit <a href="${p.nasaLink}" target="_blank">NASA ${p.name} Page</a>.</p>
+        <div class="clear"></div>
+      `;
+      infoContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Scroll buttons functionality
+    scrollLeftBtn.addEventListener('click', () => {
+      cardsContainer.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+    scrollRightBtn.addEventListener('click', () => {
+      cardsContainer.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

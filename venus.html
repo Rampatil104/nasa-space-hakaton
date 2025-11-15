@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Venus - Planet Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('plaa.jpg'); /* Same background as other planets */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%; /* Circle planet */
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(230, 126, 34, 0.6); /* Orange glow for Venus */
+      margin-bottom: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(230, 126, 34, 0.9);
+    }
+
+    h1 {
+      color: #e67e22; /* Orange color */
+      font-size: 40px;
+      text-shadow: 
+        0 0 3px #f39c12,  /* subtle inner glow */
+        0 0 6px #e67e22;  /* subtle outer glow */
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(230, 126, 34, 0.2);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    a:hover {
+      background: #217dbb;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Venus</h1>
+  <img src="venus.png" alt="Venus"> <!-- Local image in same folder -->
+  <p>
+    Venus is often called Earth's "sister planet" because of their similar size and composition. 
+    However, its surface is extremely hot (over 460°C) due to a runaway greenhouse effect. 
+    Venus also rotates backwards compared to most planets!
+  </p>
+  <a href="index.html">⬅ Back to Planet Selector</a>
+</body>
+</html>
