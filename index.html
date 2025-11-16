@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Start Page</title>
+
+  <!-- Preload so background starts downloading early -->
+  <link rel="preload" as="image" href="am.webp">
+
   <style>
     body {
       margin: 0;
@@ -12,15 +16,21 @@
       justify-content: center;
       align-items: center;
 
-      /* ✅ FIXED — Works on GitHub */
-      background: url('am.jpg') no-repeat center center fixed;
+      /* BACKGROUND FIXED FOR GITHUB */
+      background-image: url('am.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
+      background-attachment: fixed;
 
       font-family: 'Arial', sans-serif;
       color: #fff;
       overflow: hidden;
       text-align: center;
       position: relative;
+
+      /* fallback color shown instantly */
+      background-color: #020617;
     }
 
     h1 {
@@ -77,4 +87,3 @@
   <button onclick="window.location.href='startt.html'">Begin</button>
 </body>
 </html>
-
